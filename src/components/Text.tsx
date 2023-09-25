@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TextProps {
   element?: keyof JSX.IntrinsicElements;
@@ -9,7 +9,7 @@ interface TextProps {
 const wrapWordsInSpans = (
   text: string,
   wordsPerGroup: number,
-  colors: string[],
+  availableColors: string[],
   padding?: string,
 ) => {
   const words = text.split(' ');
@@ -17,12 +17,13 @@ const wrapWordsInSpans = (
 
   for (let i = 0; i < words.length; i += wordsPerGroup) {
     const group = words.slice(i, i + wordsPerGroup).join(' ');
-    const color = colors[(i / wordsPerGroup) % colors.length];
+    const randomColor =
+      availableColors[Math.floor(Math.random() * availableColors.length)];
 
     wrappedWords.push(
       <span
         key={i}
-        className={`inline-block px-6 my-2 rounded-full mx-1 ${color} ${
+        className={`inline-block px-6 my-2 rounded-full mx-2 ${randomColor} ${
           padding || ''
         }`}
       >
@@ -38,12 +39,13 @@ const Text: React.FC<TextProps> = ({ element = 'p', label, className }) => {
   const ElementType = element;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isStopped, setIsStopped] = useState(false);
-  const [colors, setColors] = useState([
+  const availableColors = [
     'bg-secondary-1',
     'bg-secondary-2',
     'bg-secondary-3',
-  ]);
-  const wrappedWords = wrapWordsInSpans(label, 3, colors);
+  ];
+  const wrappedWordsRef = useRef(wrapWordsInSpans(label, 3, availableColors));
+  const wrappedWords = wrappedWordsRef.current;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -57,10 +59,14 @@ const Text: React.FC<TextProps> = ({ element = 'p', label, className }) => {
       });
     }, 30);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [wrappedWords.length, colors]);
+    return () => clearInterval(intervalId);
+  }, [wrappedWords.length]);
+
+  useEffect(() => {
+    if (isStopped) {
+      setCurrentIndex(wrappedWords.length - 1);
+    }
+  }, [isStopped, wrappedWords.length]);
 
   return (
     <ElementType className={className}>
