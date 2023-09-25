@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600;700;800;900&display=swap');
+:root {
+  --bg-color: #10161d;
+  --font-color: #bec7d2;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './components/hero';
