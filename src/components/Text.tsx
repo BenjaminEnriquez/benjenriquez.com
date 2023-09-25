@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface TextProps {
   element?: keyof JSX.IntrinsicElements;
@@ -9,42 +9,63 @@ interface TextProps {
 const wrapWordsInSpans = (
   text: string,
   wordsPerGroup: number,
+  colors: string[],
   padding?: string,
 ) => {
   const words = text.split(' ');
   const wrappedWords = [];
-  const colors = ['bg-secondary-1', 'bg-secondary-2', 'bg-secondary-3'];
 
   for (let i = 0; i < words.length; i += wordsPerGroup) {
     const group = words.slice(i, i + wordsPerGroup).join(' ');
-
-    // Create an array of colors with more occurrences of 'bg-primary-1'
-    const weightedColors = [
-      'bg-secondary-1',
-      'bg-secondary-1',
-      ...colors.slice(1), // Exclude 'bg-primary-1' from the remaining colors
-    ];
-
-    // Randomly select a color from the weighted array
-    const randomColor =
-      weightedColors[Math.floor(Math.random() * weightedColors.length)];
+    const color = colors[(i / wordsPerGroup) % colors.length];
 
     wrappedWords.push(
-      `<span class='inline-block px-6 my-2 rounded-full ${randomColor}'>${group}</span>`,
+      <span
+        key={i}
+        className={`inline-block px-6 my-2 rounded-full mx-1 ${color} ${
+          padding || ''
+        }`}
+      >
+        {group}
+      </span>,
     );
   }
 
-  return wrappedWords.join(' ');
+  return wrappedWords;
 };
 
 const Text: React.FC<TextProps> = ({ element = 'p', label, className }) => {
   const ElementType = element;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isStopped, setIsStopped] = useState(false);
+  const [colors, setColors] = useState([
+    'bg-secondary-1',
+    'bg-secondary-2',
+    'bg-secondary-3',
+  ]);
+  const wrappedWords = wrapWordsInSpans(label, 3, colors);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1;
+        if (nextIndex >= wrappedWords.length) {
+          clearInterval(intervalId);
+          setIsStopped(true);
+        }
+        return nextIndex % wrappedWords.length;
+      });
+    }, 30);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [wrappedWords.length, colors]);
 
   return (
-    <ElementType
-      className={className}
-      dangerouslySetInnerHTML={{ __html: wrapWordsInSpans(label, 3) }}
-    ></ElementType>
+    <ElementType className={className}>
+      {isStopped ? wrappedWords : wrappedWords.slice(0, currentIndex + 1)}
+    </ElementType>
   );
 };
 

@@ -17,7 +17,10 @@ const About: React.FC<AboutProps> = () => {
             label="ABOUT ME"
           />
           <Frame>
-            <Text className="text-sm" label="Content loading..." />
+            <Text
+              className="text-sm"
+              label="I am a frontend developer with over 5 years of experience in building web applications. My primary skills are in React.js and WordPress development. I have a strong understanding of HTML, CSS, and JavaScript, and I am always looking to learn new technologies and improve my skills. I am passionate about creating beautiful and functional user interfaces that provide a great user experience. In my free time, I enjoy reading about new technologies and experimenting with new programming languages and frameworks."
+            />
           </Frame>
         </div>
       </section>
