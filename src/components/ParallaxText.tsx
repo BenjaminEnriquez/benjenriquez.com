@@ -64,7 +64,7 @@ const ParallaxText: React.FC<ParallaxProps> = ({
    * dynamically generated number of children.
    */
   return (
-    <div className="flex flex-nowrap m-0 fixed overflow-hidden opacity-5 w-full">
+    <div className="flex flex-nowrap m-0 fixed overflow-hidden opacity-5 w-full pointer-events-none font-black">
       <motion.div
         className="text-[15rem] flex flex-nowrap whitespace-nowrap uppercase opacity-0.2"
         style={{ x }}
