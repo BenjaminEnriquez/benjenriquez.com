@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import {
   motion,
   useScroll,
@@ -63,16 +63,35 @@ const ParallaxText: React.FC<ParallaxProps> = ({
    * we have four children (100% / 4). This would also want deriving from the
    * dynamically generated number of children.
    */
+
+  type spanComponentProp = {
+    numberOfTimes: number;
+    children: ReactNode;
+  };
+
+  const SpanComponent = ({ numberOfTimes, children }: spanComponentProp) => {
+    const spanArray = Array.from(
+      { length: numberOfTimes },
+      (_, index) => index + 1,
+    );
+
+    return (
+      <>
+        {spanArray.map((index) => (
+          <span key={index} className="block mr-6">
+            {children}
+          </span>
+        ))}
+      </>
+    );
+  };
   return (
     <div className="flex flex-nowrap m-0 fixed overflow-hidden opacity-5 w-full pointer-events-none font-black">
       <motion.div
         className="text-[15rem] flex flex-nowrap whitespace-nowrap uppercase opacity-0.2"
         style={{ x }}
       >
-        <span className="block mr-6">{children}</span>
-        <span className="block mr-6">{children}</span>
-        <span className="block mr-6">{children}</span>
-        <span className="block mr-6">{children}</span>
+        <SpanComponent numberOfTimes={4}>{children}</SpanComponent>
       </motion.div>
     </div>
   );

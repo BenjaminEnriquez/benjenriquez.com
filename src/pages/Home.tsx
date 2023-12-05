@@ -18,23 +18,23 @@ const Home: React.FC<HomeProps> = ({ handleHoverEnter, handleHoverLeave }) => {
   return (
     <>
       <Meta title="Home" />
-      <ParallaxText baseVelocity={-1}>BENJAMIN</ParallaxText>
+      <ParallaxText baseVelocity={-1}>BENJAMIN WEB DEVELOPER </ParallaxText>
       <section className="h-screen flex items-center px-8 max-w-screen-2xl mx-auto relative z-0">
         <div className="w-1/2 relative">
           <Frame>
             <Text
               className="text-sm"
               element="div"
-              label="Hello, I am Benjamin Enriquez Jr, a passionate frontend developer with over 5 years of experience in the field. I specialize in creating dynamic and user-friendly web experiences by harnessing the power of React.js."
+              label="Hello, I am Benjamin Enriquez Jr, a passionate frontend developer with over 7 years of experience in the field. I specialize in creating dynamic and user-friendly web experiences by harnessing the power of React.js."
             />
           </Frame>
         </div>
         <div className="w-1/2 relative h-full flex justify-center items-end">
-          <img
+          {/* <img
             className="w-[500px] h-fit mix-blend-lighten"
             src={Me}
             alt="Benjamin GitHub Shirt"
-          />
+          /> */}
         </div>
       </section>
       <Section id="home">
