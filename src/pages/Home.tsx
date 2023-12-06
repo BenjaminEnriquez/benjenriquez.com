@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Text from '../components/Text';
-import Me from '../img/benj.png';
+// import Me from '../img/benj.png';
 import Frame from '../components/Frame';
 import Meta from '../components/layout/Meta';
-import ParallaxText from '../components/ParallaxText';
 import Section from '../components/Section';
 import Main from '../components/sections/Main';
 
@@ -13,12 +12,11 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ handleHoverEnter, handleHoverLeave }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered] = useState(false);
 
   return (
     <>
       <Meta title="Home" />
-      <ParallaxText baseVelocity={-1}>BENJAMIN WEB DEVELOPER </ParallaxText>
       <section className="h-screen flex items-center px-8 max-w-screen-2xl mx-auto relative z-0">
         <div className="w-1/2 relative">
           <Frame>

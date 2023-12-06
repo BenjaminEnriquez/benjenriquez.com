@@ -13,11 +13,13 @@ import { wrap } from '@motionone/utils';
 interface ParallaxProps {
   children: string;
   baseVelocity: number;
+  className?: string;
 }
 
 const ParallaxText: React.FC<ParallaxProps> = ({
   children,
   baseVelocity = 100,
+  className,
 }) => {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -86,7 +88,9 @@ const ParallaxText: React.FC<ParallaxProps> = ({
     );
   };
   return (
-    <div className="flex flex-nowrap m-0 fixed overflow-hidden opacity-5 w-full pointer-events-none font-black">
+    <div
+      className={`flex flex-nowrap m-0 fixed overflow-hidden opacity-5 w-full pointer-events-none font-black ${className}`}
+    >
       <motion.div
         className="text-[15rem] flex flex-nowrap whitespace-nowrap uppercase opacity-0.2"
         style={{ x }}

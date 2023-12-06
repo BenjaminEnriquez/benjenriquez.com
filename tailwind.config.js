@@ -1,4 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+const jhonsonVisibility = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.jhonson-visible': {
+      'backface-visibility': 'visible',
+    },
+    '.jhonson-hidden': {
+      'backface-visibility': 'hidden',
+    },
+  });
+});
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -21,6 +33,8 @@ module.exports = {
         200: '2',
         250: '2.5',
         300: '3',
+        600: '6',
+        1000: '10',
       },
       colors: {
         primary: {
@@ -40,5 +54,5 @@ module.exports = {
     },
   },
 
-  plugins: [],
+  plugins: [jhonsonVisibility],
 };

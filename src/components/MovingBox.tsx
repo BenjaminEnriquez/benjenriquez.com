@@ -20,14 +20,20 @@ const MovingBox: React.FC<MovingBoxProps> = ({ isHovered }) => {
   }, []);
 
   return (
-    <div
-      className={`fixed w-4 h-4 flex items-center justify-center rounded-full transition-transform duration-300 pointer-events-none z-50 ${
-        isHovered
-          ? 'scale-300 bg-primary-3 hover:bg-primary-3 opacity-50 transition-scale duration-300'
-          : 'bg-blue-500 hover:bg-blue-600'
-      } hover:scale-110`}
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
-    ></div>
+    <>
+      <div
+        className={`fixed w-2 h-2 flex items-center justify-center bg-primary-3 rounded-full transition-transform duration-300 pointer-events-none z-50 jhonson-visible ${
+          isHovered && 'scale-1000 opacity-50 duration-200'
+        }`}
+        style={{ left: `${position.x - 2}px`, top: `${position.y - 2}px` }}
+      ></div>
+      <div
+        className={`fixed w-6 h-6 flex items-center justify-center border border-primary-3 rounded-full transition-transform duration-300 pointer-events-none z-50 jhonson-visible ${
+          isHovered && 'opacity-0'
+        }`}
+        style={{ left: `${position.x - 10}px`, top: `${position.y - 10}px` }}
+      ></div>
+    </>
   );
 };
 

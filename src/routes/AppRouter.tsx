@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import About from '../pages/About';
 import Home from '../pages/Home';
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import Projects from '../pages/Projects';
 import MovingBox from '../components/MovingBox';
 

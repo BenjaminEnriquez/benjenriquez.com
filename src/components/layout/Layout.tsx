@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import Header from './layout/Header';
+import Header from './Header';
 import { scrollSpy } from 'react-scroll';
+import ParallaxText from '../ParallaxText';
 
 type LayoutProps = {
   children: ReactNode;
@@ -17,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({
     scrollSpy.update();
   }, []);
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered] = useState(false);
 
   return (
     <>
@@ -26,7 +27,14 @@ const Layout: React.FC<LayoutProps> = ({
         handleHoverEnter={handleHoverEnter}
         handleHoverLeave={handleHoverLeave}
       />
+      <ParallaxText className="top-[-90px]" baseVelocity={-1}>
+        BENJAMIN WEB MASTER&nbsp;
+      </ParallaxText>
+
       <main>{children}</main>
+      <ParallaxText className="bottom-[-80px]" baseVelocity={0.5}>
+        ENRIQUEZ WEB MASTER&nbsp;
+      </ParallaxText>
     </>
   );
 };
