@@ -14,7 +14,7 @@ const Meta: React.FC<MetaProps> = ({ title = '', metaDescription = '' }) => {
         <meta name="description" content={metaDescription} />
         <meta
           name="keywords"
-          content="Benjamin Enriquez, Frontend Developer, ReactJS"
+          content="Benjamin Enriquez, Frontend Developer,tes test ReactJS"
         />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
