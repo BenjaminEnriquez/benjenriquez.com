@@ -14,7 +14,7 @@ const Meta: React.FC<MetaProps> = ({ title = '', metaDescription = '' }) => {
         <meta name="description test 6" content={metaDescription} />
         <meta
           name="keywords"
-          content="Ben dd d d d djamin Enriquez, xxx xx Frontend Developer,tes test ReactJS TEST 5"
+          content="test 7 Ben dd d d d djamin Enriquez, xxx xx Frontend Developer,tes test ReactJS TEST 5"
         />
       </Helmet>
     </>
