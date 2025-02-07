@@ -8,7 +8,7 @@ type AboutProps = {};
 const About: React.FC<AboutProps> = () => {
   return (
     <>
-      <Meta title="About Me" />
+      <Meta title="About Me" metaDescription="Gwapo nga developer sa cebu" />
       <section className="h-fit flex items-center px-8 max-w-screen-xl mx-auto pt-20">
         <div className="w-full relative">
           <Text
